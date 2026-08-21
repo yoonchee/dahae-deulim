@@ -1,0 +1,10 @@
+{
+  "name": "dahae-deulim",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Live pilot page for 다해드림 — free personal errand help for older adults.",
+  "type": "module",
+  "scripts": {
+    "start": "node server.js"
+  }
+}

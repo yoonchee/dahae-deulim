@@ -1,0 +1,4 @@
+node_modules/
+data/waitlist.json
+data/visits.json
+.DS_Store
