@@ -16,12 +16,40 @@
 | 부탁 대상 | 자녀가 부모님을 위해 맡긴다 | 본인만 남거나 장난만 있다 |
 | 고른 일 | 한두 가지에 수요가 몰린다 | 전부 비슷하거나 아무도 고르지 않는다 |
 
-페이지에서 남긴 부탁은 로컬 `data/`에만 저장됩니다. `/results.html`에서 봅니다.
+## 어디에 쌓이나
+
+페이지에서 남긴 부탁은 **구글 폼**으로 바로 들어갑니다. 폼의 "응답" 탭에서 봅니다.
+전화로 온 건은 어디에도 기록되지 않으니 따로 적어 두세요.
+
+방문 수는 [GoatCounter](https://www.goatcounter.com/)로 셉니다. 전화 버튼 클릭도
+`phone-cta` 이벤트로 남으니, 전화를 걸려는 사람이 몇 명인지 대략 볼 수 있습니다.
 
 ## 실행
 
+정적 페이지라 서버가 필요 없습니다. 로컬에서 보려면:
+
 ```bash
-npm start
+python3 -m http.server 3456
 ```
 
-브라우저에서 [http://localhost:3456](http://localhost:3456) 을 엽니다.
+[http://localhost:3456](http://localhost:3456) 을 엽니다.
+
+배포는 `main`에 push하면 GitHub Pages가 알아서 올립니다.
+
+## 연결된 곳
+
+- **구글 폼** — [응답 보기](https://docs.google.com/forms/d/e/1FAIpQLSdt9HuWipBs81DxcwTbReMPe8lClawTvzUSwgcnvxJGSeahbw/viewform)
+  (`FORM_ID`와 `entry.*` 는 `app.js` 맨 위에 있습니다)
+- **GoatCounter** — https://yoonchee.goatcounter.com
+
+질문을 고치거나 선택지 문구를 바꿀 때는 `app.js`의 `ROLE_ANSWER` / `JOB_ANSWER` 와
+`index.html`의 체크박스 문구를 **함께** 바꿔야 합니다. 한 글자라도 다르면 구글이
+답을 조용히 버립니다. `entry.*` 아이디는 폼 편집 화면 ⋮ → "미리 채워진 링크 만들기"
+에서 다시 확인할 수 있습니다.
+
+## 한계
+
+폼 전송은 브라우저가 `no-cors`로 보내기 때문에 **성공 여부를 알 수 없습니다.**
+구글이 거절해도 화면에는 "접수했습니다"가 뜹니다. 그래서 접수 문구에 전화번호를
+항상 같이 보여 줍니다. 설정을 바꾼 뒤에는 반드시 직접 한 번 넣어 보고
+구글 폼 응답 탭에 실제로 들어왔는지 확인하세요.
